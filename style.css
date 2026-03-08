@@ -1,0 +1,140 @@
+/* General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #a7a7ff, #38bdf8);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.hero button {
+  background: #38bdf8;
+  border: none;
+  padding: 15px 30px;
+  margin: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background: #0ea5e9;
+}
+
+/* Project Grid */
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.project-card {
+  background-color: #1f1f1f;
+  padding: 20px;
+  width: 200px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.project-card p {
+  margin: 10px 0;
+}
+
+.status {
+  display: block;
+  margin: 10px 0;
+  padding: 5px;
+  background-color: #38bdf8;
+  border-radius: 5px;
+}
+
+.status.in-progress {
+  background-color: #fbbf24;
+}
+
+.status.released {
+  background-color: #34d399;
+}
+
+button {
+  background: #38bdf8;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0ea5e9;
+}
+
+/* Team Profiles */
+.profile-card {
+  background: #1f1f1f;
+  padding: 20px;
+  width: 250px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px;
+}
+
+.profile-card img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Floating Effects (Clouds) */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+body {
+  animation: float
