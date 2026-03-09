@@ -75,40 +75,40 @@
 
   /* Container */
   .container {
-    padding: 20px 30px;
+    padding: 20px 40px;
   }
 
   h1 {
     text-align: center;
     color: #9b59b6;
-    font-size: 2.2rem;
-    margin-bottom: 35px;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
   }
 
-/* Team Section Grid */
-.team {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px; /* more space between cards */
-  justify-items: center; /* center cards horizontally */
-  padding: 40px 20px;
-}
+  /* Team Section Grid */
+  .team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px; /* space between cards */
+    justify-items: center;
+    padding: 40px 0;
+  }
 
-/* Profile Cards */
-.profile-card {
-  background-color: #1a1a1a;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
-  padding: 20px;
-  width: 100%;
-  max-width: 300px; /* optional, smaller than before */
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-align: center;
-}
+  /* Profile Cards */
+  .profile-card {
+    background-color: #1a1a1a;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
+    padding: 20px;
+    width: 100%;
+    max-width: 300px; /* controls card width */
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+  }
 
   .profile-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(155, 89, 182, 0.6);
+    box-shadow: 0 10px 20px rgba(155, 89, 182, 0.6);
   }
 
   .profile-card img {
@@ -142,9 +142,19 @@
     box-shadow: 0 -2px 6px rgba(155, 89, 182, 0.3);
   }
 
+  /* Responsive */
+  @media (max-width: 900px) {
+    .container {
+      padding: 20px 30px;
+    }
+    .profile-card {
+      max-width: 280px;
+    }
+  }
+
   @media (max-width: 600px) {
     .container {
-      padding: 20px 15px;
+      padding: 15px 20px;
     }
     .profile-card {
       max-width: 90%;
@@ -167,14 +177,14 @@
 <span class="openbtn" onclick="openSidebar()">☰ Menu</span>
 
 <!-- Banner -->
-<div id="banner">STILL MAKING THE WEBSITE LOL — will be DONE WHENEVER I FEEL LIKE IT!</div>
+<div id="banner">
+  STILL MAKING THE WEBSITE LOL — will be DONE WHENEVER I FEEL LIKE IT!
+</div>
 
 <!-- Page Content -->
 <div class="container">
   <h1>Meet the People</h1>
   <section class="team">
-    <h2>Meet the People Behind SoftCloud</h2>
-
     <div class="profile-card">
       <img src="images/dev-profile.jpg" alt="Developer">
       <h3>h4ran</h3>
@@ -202,7 +212,6 @@
       <p>Private Dev / Private Creator |</p>
       <p>Master_Sheshi is someone who enjoys their own projects.</p>
     </div>
-
   </section>
 </div>
 
