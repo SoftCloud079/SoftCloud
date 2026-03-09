@@ -1,191 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoftCloud | Creative Playground</title>
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="icon" href="favicon.ico">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #0a0a0a;
-      color: #eee;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoftCloud | Creative Playground</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="icon" href="favicon.ico">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0a0a0a;
+    color: #eee;
+    min-height: 100vh;
+    overflow: hidden;
+  }
 
-    /* Banner */
-    #banner {
-      width: 100%;
-      background-color: #4b0082;
-      color: #fff;
-      text-align: center;
-      padding: 12px 0;
-      font-weight: 500;
-      font-size: 1em;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-      transition: all 0.5s ease;
-      position: fixed;
-      top: 0;
-      z-index: 100;
-    }
+  /* Banner */
+  #banner {
+    width: 100%;
+    background-color: #4b0082;
+    color: #fff;
+    text-align: center;
+    padding: 12px 0;
+    font-weight: 500;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+  }
 
-    /* Sidebar */
-    #sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #1a001a;
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-      z-index: 101;
-    }
+  /* Sidebar */
+  #sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1a001a;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 101;
+  }
+  #sidebar a {
+    padding: 12px 24px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #eee;
+    display: block;
+    transition: 0.2s;
+  }
+  #sidebar a:hover { background-color: #9b59b6; color: white; }
+  #sidebar .closebtn { position: absolute; top: 10px; right: 18px; font-size: 2em; }
 
-    #sidebar a {
-      padding: 12px 24px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      color: #eee;
-      display: block;
-      transition: 0.2s;
-    }
+  /* Sidebar Button */
+  .openbtn {
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #eee;
+    background-color: #1a001a;
+    padding: 10px 15px;
+    border-radius: 6px;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 102;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  .openbtn:hover { background-color: #9b59b6; transform: scale(1.05); }
 
-    #sidebar a:hover {
-      background-color: #9b59b6;
-      color: white;
-    }
+  /* Hero Section */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: radial-gradient(circle at 30% 30%, #2b002b 0%, #0a0a0a 80%);
+    position: relative;
+    text-align: center;
+  }
 
-    #sidebar .closebtn {
-      position: absolute;
-      top: 10px;
-      right: 18px;
-      font-size: 2em;
-    }
+  /* Top Name & Motto */
+  .hero .title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .hero .title h1 {
+    font-size: 2.5em;
+    color: #9b59b6;
+    margin: 0;
+    letter-spacing: 2px;
+  }
+  .hero .title p {
+    color: #ccc;
+    font-size: 1em;
+    margin: 4px 0 0 0;
+    font-style: italic;
+  }
 
-    /* Sidebar open button */
-    .openbtn {
-      font-size: 1.2em;
-      cursor: pointer;
-      color: #eee;
-      background-color: #1a001a;
-      padding: 10px 15px;
-      border-radius: 6px;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      z-index: 102;
-      transition: background-color 0.2s, transform 0.2s;
-    }
+  /* Middle dynamic text */
+  .hero .center-text {
+    font-size: 2em;
+    color: #eee;
+    animation: fadeRotate 8s infinite;
+  }
 
-    .openbtn:hover {
-      background-color: #9b59b6;
-      transform: scale(1.05);
-    }
+  @keyframes fadeRotate {
+    0%, 33% { opacity: 1; transform: scale(1) rotate(0deg); }
+    10%, 43% { opacity: 0; transform: scale(0.8) rotate(5deg); }
+    34%, 66% { opacity: 1; transform: scale(1) rotate(-3deg); }
+    50%, 76% { opacity: 0; transform: scale(0.8) rotate(5deg); }
+    67%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
 
-    /* Hero Section */
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 100vh;
-      background: radial-gradient(circle at 30% 30%, #2b002b 0%, #0a0a0a 80%);
-      position: relative;
-      overflow: hidden;
-      padding: 0 20px;
-    }
+  /* Floating circles background */
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: floatCircles 10s infinite alternate;
+  }
+  .circle:nth-child(1) { width: 100px; height: 100px; background: #9b59b6; top: 20%; left: 15%; animation-delay: 0s; }
+  .circle:nth-child(2) { width: 150px; height: 150px; background: #8e44ad; top: 50%; left: 70%; animation-delay: 2s; }
+  .circle:nth-child(3) { width: 80px; height: 80px; background: #bb33ff; top: 70%; left: 40%; animation-delay: 4s; }
 
-    /* Glow behind hero text */
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(155,89,182,0.3) 0%, transparent 70%);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      filter: blur(120px);
-      animation: float 8s ease-in-out infinite alternate;
-      z-index: 0;
-    }
+  @keyframes floatCircles {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+    100% { transform: translateY(0) scale(1); }
+  }
 
-    @keyframes float {
-      0% { transform: translate(-50%, -50%) scale(1); }
-      50% { transform: translate(-50%, -55%) scale(1.05); }
-      100% { transform: translate(-50%, -50%) scale(1); }
-    }
+  footer {
+    text-align: center;
+    color: #9b59b6;
+    padding: 15px 0;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    background-color: #0a0a0a;
+    box-shadow: 0 -2px 6px rgba(155, 89, 182, 0.3);
+  }
 
-    .hero .content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero .content h1 {
-      font-size: 3em;
-      color: #9b59b6;
-      margin-bottom: 15px;
-      letter-spacing: 2px;
-    }
-
-    .hero .content p {
-      font-size: 1.2em;
-      color: #ccc;
-      margin-bottom: 30px;
-      font-style: italic;
-    }
-
-    .hero button {
-      background-color: #9b59b6;
-      border: none;
-      color: white;
-      padding: 12px 24px;
-      margin: 5px;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 10px rgba(155,89,182,0.7);
-    }
-
-    .hero button:hover {
-      background-color: #8e44ad;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(155, 89, 182, 0.8);
-    }
-
-    footer {
-      text-align: center;
-      color: #9b59b6;
-      padding: 15px 0;
-      font-size: 0.9em;
-      letter-spacing: 1px;
-      background-color: #0a0a0a;
-      box-shadow: 0 -2px 6px rgba(155, 89, 182, 0.3);
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 600px) {
-      .hero .content h1 {
-        font-size: 2em;
-      }
-      .hero .content p {
-        font-size: 1em;
-      }
-      .hero button {
-        padding: 10px 18px;
-        font-size: 0.95em;
-      }
-    }
-  </style>
+</style>
 </head>
 <body>
 
@@ -206,38 +168,44 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="content">
+    <!-- Name & Motto Top -->
+    <div class="title">
       <h1>𝗦𝗢𝗙𝗧𝗖𝗟𝗢𝗨𝗗 𝗦𝗧𝗨𝗗𝗜𝗢𝗦®</h1>
       <p>unique creations, a true taste of imagination</p>
-      <button onclick="window.location.href='projects.html'">Explore Projects</button>
-      <button onclick="window.location.href='shop.html'">Visit Shop</button>
-      <button onclick="window.location.href='team.html'">Meet the People</button>
     </div>
+
+    <!-- Center animated tagline -->
+    <div class="center-text">Dream • Build • Create</div>
+
+    <!-- Floating circles -->
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
   </section>
 
   <footer>
     <p>Made by SoftCloud®</p>
   </footer>
 
-  <script>
-    // Banner hide after 5 seconds
-    setTimeout(() => {
-      const banner = document.getElementById('banner');
-      if(banner){
-        banner.style.opacity = '0';
-        banner.style.transform = 'translateY(-50px)';
-        setTimeout(() => banner.style.display = 'none', 500);
-      }
-    }, 5000);
+<script>
+  // Banner hide after 5 seconds
+  setTimeout(() => {
+    const banner = document.getElementById('banner');
+    if(banner){
+      banner.style.opacity = '0';
+      banner.style.transform = 'translateY(-50px)';
+      setTimeout(() => banner.style.display = 'none', 500);
+    }
+  }, 5000);
 
-    // Sidebar JS
-    function openSidebar() {
-      document.getElementById("sidebar").style.width = "220px";
-    }
-    function closeSidebar() {
-      document.getElementById("sidebar").style.width = "0";
-    }
-  </script>
+  // Sidebar JS
+  function openSidebar() {
+    document.getElementById("sidebar").style.width = "220px";
+  }
+  function closeSidebar() {
+    document.getElementById("sidebar").style.width = "0";
+  }
+</script>
 
 </body>
 </html>
