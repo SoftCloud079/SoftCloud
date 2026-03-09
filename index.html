@@ -2,22 +2,20 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="icon" href="favicon.ico">
+  <link rel="icon" href="favicon.ico">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SoftCloud | Creative Playground</title>
   <style>
-    /* Reset & Body */
-    body, html {
+    body {
       margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #0a0a0a; /* Black background */
+      font-family: Arial, sans-serif;
+      background-color: #0a0a0a;
       color: #eee;
-      height: 100%;
+      min-height: 100vh;
     }
 
-    /* Banner (Optional if under construction) */
+    /* Banner */
     #banner {
       width: 100%;
       background-color: #4b0082;
@@ -29,6 +27,63 @@
       letter-spacing: 0.5px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.5);
       transition: all 0.5s ease;
+      position: fixed;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* Sidebar */
+    #sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #1a001a;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+      z-index: 101;
+    }
+
+    #sidebar a {
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #eee;
+      display: block;
+      transition: 0.2s;
+    }
+
+    #sidebar a:hover {
+      background-color: #9b59b6;
+      color: white;
+    }
+
+    #sidebar .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-size: 2em;
+    }
+
+    .openbtn {
+      font-size: 1.2em;
+      cursor: pointer;
+      color: #eee;
+      background-color: #1a001a;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin: 10px;
+      transition: background-color 0.2s;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 102;
+    }
+
+    .openbtn:hover {
+      background-color: #9b59b6;
     }
 
     /* Hero Section */
@@ -37,9 +92,38 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      height: calc(100vh - 60px); /* Full screen minus footer */
+      height: 100vh;
       background: linear-gradient(135deg, #1a1a1a, #2b002b);
+      position: relative;
+      overflow: hidden;
       padding: 0 20px;
+    }
+
+    /* Glow behind text */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(155,89,182,0.5) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(100px);
+      animation: float 6s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -55%) scale(1.05); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .hero .content {
+      position: relative;
+      z-index: 1;
     }
 
     .hero .content h1 {
@@ -55,7 +139,6 @@
       margin-bottom: 30px;
     }
 
-    /* Buttons */
     .hero button {
       background-color: #9b59b6;
       border: none;
@@ -82,9 +165,10 @@
       letter-spacing: 1px;
       background-color: #0a0a0a;
       box-shadow: 0 -2px 6px rgba(155, 89, 182, 0.3);
+      position: relative;
+      z-index: 1;
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       .hero .content h1 {
         font-size: 2.2em;
@@ -103,7 +187,19 @@
 </head>
 <body>
 
-<!-- Optional Banner for Under Construction -->
+<!-- Sidebar -->
+<div id="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+  <a href="shop.html">Shop</a>
+  <a href="team.html">Meet the People</a>
+</div>
+
+<!-- Sidebar Button -->
+<span class="openbtn" onclick="openSidebar()">☰ Menu</span>
+
+<!-- Banner -->
 <div id="banner">STILL MAKING THE WEBSITE LOL — will be DONE WHENEVER I FEEL LIKE IT!</div>
 
 <!-- Hero Section -->
@@ -122,13 +218,23 @@
 </footer>
 
 <script>
-  // Smooth banner hide after 5 seconds
+  // Banner hide after 5 seconds
   setTimeout(() => {
     const banner = document.getElementById('banner');
-    banner.style.opacity = '0';
-    banner.style.transform = 'translateY(-50px)';
-    setTimeout(() => banner.style.display = 'none', 500);
+    if(banner){
+      banner.style.opacity = '0';
+      banner.style.transform = 'translateY(-50px)';
+      setTimeout(() => banner.style.display = 'none', 500);
+    }
   }, 5000);
+
+  // Sidebar JS
+  function openSidebar() {
+    document.getElementById("sidebar").style.width = "220px";
+  }
+  function closeSidebar() {
+    document.getElementById("sidebar").style.width = "0";
+  }
 </script>
 
 </body>
