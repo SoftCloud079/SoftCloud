@@ -13,7 +13,6 @@
       background: #0a0a0a;
       margin: 0;
       color: #eee;
-      display: flex;
       min-height: 100vh;
     }
 
@@ -27,59 +26,69 @@
       font-weight: 500;
       box-shadow: 0 2px 8px rgba(0,0,0,.6);
       transition: 0.5s;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 900;
     }
 
     /* Sidebar */
-    .sidebar {
-      width: 220px;
-      background-color: #1a001a;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 80px; /* space for banner */
+    #sidebar {
+      height: 100%;
+      width: 0;
       position: fixed;
-      left: 0;
       top: 0;
-      bottom: 0;
-      z-index: 800;
-      box-shadow: 2px 0 8px rgba(155,89,182,0.3);
+      left: 0;
+      background-color: #1a001a;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+      z-index: 1000;
     }
 
-    .sidebar button {
-      width: 80%;
-      margin: 10px 0;
-      padding: 12px 0;
+    #sidebar a {
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #eee;
+      display: block;
+      transition: 0.2s;
+    }
+
+    #sidebar a:hover {
       background-color: #9b59b6;
-      border: none;
       color: white;
-      font-weight: bold;
-      border-radius: 8px;
+    }
+
+    #sidebar .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-size: 2em;
+    }
+
+    /* Open Sidebar Button */
+    .openbtn {
+      font-size: 1.2em;
       cursor: pointer;
-      transition: all 0.25s ease;
+      color: #eee;
+      background-color: #1a001a;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin: 10px;
+      transition: background-color 0.2s;
     }
 
-    .sidebar button:hover {
-      background-color: #8e44ad;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(155,89,182,0.5);
+    .openbtn:hover {
+      background-color: #9b59b6;
     }
 
-    /* Container for page content */
+    /* Container */
     .container {
-      margin-left: 240px; /* space for sidebar */
-      padding: 100px 30px 30px 30px; /* top space for banner */
-      flex: 1;
+      padding: 20px 30px;
     }
 
-    h2 {
-      font-size: 2.5em;
-      color: #9b59b6;
+    h1 {
       text-align: center;
-      margin-bottom: 30px;
+      color: #9b59b6;
+      font-size: 2.2rem;
+      margin-bottom: 35px;
     }
 
     /* Project Cards */
@@ -157,46 +166,39 @@
       box-shadow: 0 -2px 6px rgba(155, 89, 182, 0.3);
     }
 
-    @media (max-width: 800px) {
-      .sidebar {
-        width: 60px;
-        padding-top: 80px;
-      }
-
-      .sidebar button {
-        padding: 10px 4px;
-        font-size: 0.85rem;
-      }
-
+    @media (max-width: 600px) {
       .container {
-        margin-left: 70px;
-        padding: 100px 15px 30px 15px;
+        padding: 20px 15px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="shop.html">Shop</a>
+    <a href="team.html">Meet the People</a>
+  </div>
+
+  <!-- Sidebar Button -->
+  <span class="openbtn" onclick="openSidebar()">☰ Menu</span>
+
   <!-- Banner -->
   <div id="banner">
     STILL MAKING THE WEBSITE LOL — will be DONE WHENEVER I FEEL LIKE IT!
   </div>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <button onclick="window.location.href='index.html'">Home</button>
-    <button onclick="window.location.href='projects.html'">Projects</button>
-    <button onclick="window.location.href='shop.html'">Shop</button>
-    <button onclick="window.location.href='team.html'">Meet the People</button>
-  </div>
-
   <!-- Page Content -->
   <div class="container">
-    <h2>Our Projects</h2>
+    <h1>SoftCloud Projects</h1>
 
     <div class="project-card">
       <h3>IRIS</h3>
-      <p>still in planning and reworking due to tragity in development…</p>
+      <p>Still in planning and reworking due to tragedy in development…</p>
       <span class="status in-progress">In Progress</span>
       <button onclick="alert('Sorry, this project is not available')">Check it out</button>
     </div>
@@ -207,24 +209,31 @@
       <span class="status released">Prototype</span>
       <button onclick="alert('Testing only for staff. We will notify when public.')">TESTING ONLY FOR STAFF</button>
     </div>
-
+    
     <!-- Add more project cards here -->
+
   </div>
 
-  <footer>
-    <p>Made by SoftCloud®</p>
-  </footer>
+  <footer>Made by SoftCloud®</footer>
 
   <script>
     // Banner hide after 5 seconds
     setTimeout(() => {
       const banner = document.getElementById("banner");
-      if (banner) {
+      if(banner){
         banner.style.opacity = "0";
         banner.style.transform = "translateY(-50px)";
-        setTimeout(() => banner.style.display = "none", 500);
+        setTimeout(()=>banner.style.display="none",500);
       }
-    }, 5000);
+    },5000);
+
+    // Sidebar JS
+    function openSidebar() {
+      document.getElementById("sidebar").style.width = "220px";
+    }
+    function closeSidebar() {
+      document.getElementById("sidebar").style.width = "0";
+    }
   </script>
 
 </body>
