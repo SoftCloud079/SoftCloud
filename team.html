@@ -66,21 +66,25 @@
   width: 220px;
 }
 
-    /* Open Sidebar Button */
-    .openbtn {
-      font-size: 1.2em;
-      cursor: pointer;
-      color: #eee;
-      background-color: #1a001a;
-      padding: 10px 15px;
-      border-radius: 6px;
-      margin: 10px;
-      transition: background-color 0.2s;
-    }
+/* Open Sidebar Button */
+.openbtn {
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #eee;
+  background-color: #1a001a;
+  padding: 10px 15px;
+  border-radius: 6px;
+  position: fixed;
+  top: 50%;             /* Vertically center */
+  left: 15px;           /* Distance from left */
+  transform: translateY(-50%);  /* Adjust exact vertical center */
+  z-index: 102;         /* Above banner */
+  transition: background-color 0.2s;
+}
 
-    .openbtn:hover {
-      background-color: #9b59b6;
-    }
+.openbtn:hover {
+  background-color: #9b59b6;
+}
 
     /* Container */
     .container {
