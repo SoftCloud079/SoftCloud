@@ -1,24 +1,46 @@
-window.addEventListener('DOMContentLoaded', () => {
-  const installBtn = document.getElementById('installBtn');
-  if (!installBtn) return;
+// sw.js — Service Worker
+const CACHE_NAME = 'softcloud-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/projects.html',
+  '/shop.html',
+  '/team.html',
+  '/style.css',
+  '/images/favicon.png',
+  '/images/favicon-512PX.png'
+];
 
-  installBtn.style.display = 'none';
+// Install event — cache files
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(urlsToCache);
+    })
+  );
+  self.skipWaiting(); // activate immediately
+});
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = 'block';
-  });
+// Activate event — cleanup old caches
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) =>
+      Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) return caches.delete(cache);
+        })
+      )
+    )
+  );
+  self.clients.claim(); // take control immediately
+});
 
-  installBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const choiceResult = await deferredPrompt.userChoice;
-      console.log('User response to install:', choiceResult.outcome);
-      deferredPrompt = null;
-      installBtn.style.display = 'none';
-    } else {
-      alert("Your browser doesn't support automatic installation. Open the site in Chrome/Edge and use 'Create Shortcut' in the menu.");
-    }
-  });
+// Fetch event — serve cached content first
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) return cachedResponse;
+      return fetch(event.request);
+    })
+  );
 });
