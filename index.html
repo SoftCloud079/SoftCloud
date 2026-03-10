@@ -13,6 +13,33 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/sw.js");
 }
 </script>
+
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+installBtn.style.display = 'none'; // hide by default
+
+// Listen for the beforeinstallprompt event
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block'; // show button when ready
+});
+
+// When user clicks the install button
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt(); // show native install prompt
+    const choiceResult = await deferredPrompt.userChoice;
+    console.log('User response to install:', choiceResult.outcome);
+    deferredPrompt = null;
+    installBtn.style.display = 'none'; // hide after installing
+  } else {
+    alert("Your browser doesn't support automatic installation. Open the site in Chrome/Edge and use 'Create Shortcut' in the menu.");
+  }
+});
+</script>
+  
 <style>
   body {
     margin: 0;
@@ -166,6 +193,8 @@ if ("serviceWorker" in navigator) {
   <a href="projects.html">Projects</a>
   <a href="shop.html">Shop</a>
   <a href="team.html">Meet the People</a>
+  <!-- Install / Download Button -->
+  <a href="javascript:void(0)" id="installBtn">Download / Install App</a>
 </div>
 
 <!-- Sidebar Button -->
