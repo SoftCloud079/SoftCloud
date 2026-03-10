@@ -16,27 +16,32 @@ if ("serviceWorker" in navigator) {
 
 <script>
 let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-installBtn.style.display = 'none'; // hide by default
 
-// Listen for the beforeinstallprompt event
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'block'; // show button when ready
-});
+window.addEventListener('DOMContentLoaded', () => {
+  const installBtn = document.getElementById('installBtn');
+  if (!installBtn) return;
 
-// When user clicks the install button
-installBtn.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt(); // show native install prompt
-    const choiceResult = await deferredPrompt.userChoice;
-    console.log('User response to install:', choiceResult.outcome);
-    deferredPrompt = null;
-    installBtn.style.display = 'none'; // hide after installing
-  } else {
-    alert("Your browser doesn't support automatic installation. Open the site in Chrome/Edge and use 'Create Shortcut' in the menu.");
-  }
+  installBtn.style.display = 'none'; // hide by default
+
+  // Listen for the beforeinstallprompt event
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'block'; // show button when ready
+  });
+
+  // When user clicks the install button
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt(); // show native install prompt
+      const choiceResult = await deferredPrompt.userChoice;
+      console.log('User response to install:', choiceResult.outcome);
+      deferredPrompt = null;
+      installBtn.style.display = 'none'; // hide after installing
+    } else {
+      alert("Your browser doesn't support automatic installation. Open the site in Chrome/Edge and use 'Create Shortcut' in the menu.");
+    }
+  });
 });
 </script>
   
