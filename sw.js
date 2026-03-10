@@ -1,3 +1,3 @@
 self.addEventListener("install", () => {
-  console.log("Softcloud service worker installed");
+  console.log("Service Worker Installed");
 });
