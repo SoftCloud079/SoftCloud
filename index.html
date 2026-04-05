@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftCloud | Creative Playground</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0a0a0a;
+      color: #eee;
+      min-height: 100vh;
+    }
+
+    /* Banner */
+    #banner {
+      width: 100%;
+      background-color: #4b0082;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      position: fixed;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* Sidebar */
+    #sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #1a001a;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+      z-index: 101;
+    }
+    #sidebar a {
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #eee;
+      display: block;
+      transition: 0.2s;
+    }
+    #sidebar a:hover {
+      background-color: #9b59b6;
+      color: white;
+    }
+    #sidebar .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-size: 2em;
+    }
+
+    /* Sidebar toggle button */
+    .openbtn {
+      font-size: 1.2em;
+      cursor: pointer;
+      color: #eee;
+      background-color: #1a001a;
+      padding: 10px 15px;
+      border-radius: 6px;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 102;
+      transition: background-color 0.2s;
+    }
+    .openbtn:hover { background-color: #9b59b6; }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 80vh;
+      padding: 120px 20px 50px 20px;
+    }
+    .hero h1 {
+      font-size: 3em;
+      color: #9b59b6;
+      margin-bottom: 10px;
+    }
+    .hero p.motto {
+      font-size: 1.3em;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    .hero p.description {
+      font-size: 1.1em;
+      color: #aaa;
+      max-width: 600px;
+      margin-bottom: 25px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .social-links a {
+      color: #9b59b6;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      border: 2px solid #9b59b6;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+    .social-links a:hover {
+      background-color: #9b59b6;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      color: #9b59b6;
+      padding: 15px 0;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+      background-color: #0a0a0a;
+      box-shadow: 0 -2px 6px rgba(155, 89, 182, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.2em; }
+      .hero p.motto { font-size: 1em; }
+      .hero p.description { font-size: 0.95em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="shop.html">Shop</a>
+    <a href="team.html">Meet the People</a>
+    <!-- Install / Download Button -->
+    <a href="javascript:void(0)" id="installBtn">Download / Install App</a>
+  </div>
+
+  <!-- Sidebar toggle -->
+  <span class="openbtn" onclick="openSidebar()">☰ Menu</span>
+
+  <!-- Banner -->
+  <div id="banner">
+    STILL MAKING THE WEBSITE LOL — will be DONE WHENEVER I FEEL LIKE IT!
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>𝗦𝗢𝗙𝗧𝗖𝗟𝗢𝗨𝗗 𝗦𝗧𝗨𝗗𝗜𝗢𝗦™</h1>
+    <p class="motto">Unique creations, a true taste of imagination</p>
+    <p class="description">
+      Welcome to SoftCloud Studios™ where anyone can create and feel included even if they aren't at the same skill level as someone else everyone can feel and be accepted
+    </p>
+
+    <div class="social-links">
+      <a href="#" onclick="alert('We don’t have social media LOL')">Twitter</a>
+      <a href="#" onclick="alert('We don’t have social media LOL')">Instagram</a>
+      <a href="#" onclick="alert('We don’t have social media LOL')">TikTok</a>
+      <a href="#" onclick="alert('We don’t have social media LOL')">YouTube</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made by SoftCloud™</p>
+  </footer>
+
+  <script>
+    // Banner hide after 5 seconds
+    setTimeout(() => {
+      const banner = document.getElementById("banner");
+      if (banner) {
+        banner.style.opacity = "0";
+        banner.style.transform = "translateY(-50px)";
+        setTimeout(() => banner.style.display = "none", 500);
+      }
+    }, 5000);
+
+    // Sidebar open/close
+    function openSidebar() { document.getElementById("sidebar").style.width = "220px"; }
+    function closeSidebar() { document.getElementById("sidebar").style.width = "0"; }
+
+    // Service Worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
+    }
+
+    // PWA Install Button
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('installBtn').style.display = 'block';
+    });
+
+    document.getElementById('installBtn').addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        console.log('User choice:', choice.outcome);
+        deferredPrompt = null;
+        document.getElementById('installBtn').style.display = 'none';
+      } else {
+        alert("To install, open this site in Chrome or Edge and use 'Add to Home screen' / 'Install'");
+      }
+    });
+  </script>
+
+</body>
+</html>

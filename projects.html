@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftCloud | Projects</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" href="favicon.ico">
+  <style>
+    /* Reset & Body */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a0a;
+      color: #eee;
+      min-height: 100vh;
+    }
+
+    /* Banner */
+    #banner {
+      width: 100%;
+      background-color: #4b0082;
+      color: #fff;
+      text-align: center;
+      padding: 12px 0;
+      font-weight: 500;
+      font-size: 1em;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      transition: all 0.5s ease;
+      position: relative;
+      z-index: 101;
+    }
+
+    /* Sidebar */
+    #sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #1a001a;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 80px; /* starts below banner */
+      z-index: 1000;
+    }
+
+    #sidebar a {
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #eee;
+      display: block;
+      transition: 0.2s;
+    }
+
+    #sidebar a:hover {
+      background-color: #9b59b6;
+      color: white;
+    }
+
+    #sidebar .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-size: 2em;
+    }
+
+    /* Open Sidebar Button */
+    .openbtn {
+      font-size: 1.2em;
+      cursor: pointer;
+      color: #eee;
+      background-color: #1a001a;
+      padding: 10px 15px;
+      border-radius: 6px;
+      position: fixed;
+      top: 10px;      /* Top-left corner */
+      left: 15px;
+      z-index: 102;   /* above everything */
+      transition: background-color 0.2s;
+    }
+
+    .openbtn:hover {
+      background-color: #9b59b6;
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 80px 20px 40px; /* top padding for banner + sidebar */
+      text-align: center;
+    }
+
+    .projects h2 {
+      font-size: 2.5em;
+      color: #9b59b6;
+      margin-bottom: 30px;
+    }
+
+    /* Project Cards */
+    .project-card {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 500px;
+      text-align: left;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(155, 89, 182, 0.6);
+    }
+
+    .project-card h3 {
+      font-size: 1.5em;
+      color: #eee;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: #ccc;
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+
+    /* Status badges */
+    .status {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-size: 0.9em;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .status.in-progress {
+      background-color: #9b59b6;
+      color: white;
+    }
+
+    .status.released {
+      background-color: #555;
+      color: #fff;
+    }
+
+    /* Buttons */
+    .project-card button {
+      background-color: #9b59b6;
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.95em;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card button:hover {
+      background-color: #8e44ad;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(155, 89, 182, 0.5);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: #9b59b6;
+      padding: 15px 0;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+      background-color: #0a0a0a;
+      box-shadow: 0 -2px 6px rgba(155, 89, 182, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .project-card {
+        margin: 20px 10px;
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="shop.html">Shop</a>
+    <a href="team.html">Meet the People</a>
+  </div>
+
+  <!-- Sidebar Button -->
+  <span class="openbtn" onclick="openSidebar()">☰ Menu</span>
+
+  <!-- Banner -->
+  <div id="banner">STILL MAKING THE WEBSITE LOL — will be DONE WHENEVER I FEEL LIKE IT!</div>
+
+  <!-- Projects Section -->
+  <section class="projects">
+    <h2>Our Projects</h2>
+
+    <div class="project-card">
+      <h3>IRIS</h3>
+      <p>Still in planning and reworking due to tragedy in development…</p>
+      <span class="status in-progress">In Progress</span>
+      <button onclick="alert('Sorry, this project is not available')">Check it out</button>
+    </div>
+
+    <div class="project-card">
+      <h3>bobot eco adventure</h3>
+      <p>Fun eco game in prototype and testing.</p>
+      <span class="status released">Prototype</span>
+      <button onclick="alert('Testing only for staff. Public release soon!')">TESTING ONLY FOR STAFF</button>
+    </div>
+
+  </section>
+
+  <footer>SOFTCLOUD™</footer>
+
+  <script>
+    // Sidebar functions
+    function openSidebar() {
+      document.getElementById("sidebar").style.width = "220px";
+    }
+
+    function closeSidebar() {
+      document.getElementById("sidebar").style.width = "0";
+    }
+
+    // Hide banner after 5 seconds
+    setTimeout(() => {
+      const banner = document.getElementById('banner');
+      banner.style.opacity = '0';
+      banner.style.transform = 'translateY(-50px)';
+      setTimeout(() => banner.style.display = 'none', 500);
+    }, 5000);
+  </script>
+
+</body>
+</html>
